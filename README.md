@@ -1,90 +1,113 @@
-## 🧠 Desafio Técnico – Sistema de Gestão de Projetos e Demandas
+# Gerenciador de Projetos e Tarefas
 
-### 📘 Contexto
-Sua missão é desenvolver uma **API RESTful em Java com Spring Boot** para gerenciar **projetos e tarefas (demandas)** de uma empresa.  
-O sistema será utilizado por um time de desenvolvimento para organizar suas entregas, acompanhar o status das tarefas e realizar análises simples.
+API RESTful para gerenciamento de projetos e tarefas com sistema de autenticação.
 
----
+## 📋 Sobre o Projeto
 
-## 🎯 Requisitos Técnicos
+Sistema completo para gerenciar projetos e suas respectivas tarefas, permitindo organização eficiente do trabalho com controle de status, prioridades e prazos.
 
-### 🧱 1. Modelagem de Domínio
+### Funcionalidades
 
-A modelagem pode ser modificada pelo inscrito. Porém, precisa ser justificado o motivo.
+- 🔐 **Autenticação**: Sistema de registro e login de usuários
+- 📁 **Projetos**: Criação, listagem e finalização de projetos
+- ✅ **Tarefas**: Gerenciamento completo de tarefas com filtros, prioridades e status
+- 🔍 **Filtros avançados**: Busca de tarefas por projeto, status e prioridade
 
-#### `Project`
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `id` | UUID/Long | Identificador |
-| `name` | String (3–100) | **Obrigatório** |
-| `description` | String | Opcional |
-| `startDate` | Date | Início do projeto |
-| `endDate` | Date | Opcional |
+## 🚀 Tecnologias
 
-#### `Task`
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `id` | UUID/Long | Identificador |
-| `title` | String (5–150) | **Obrigatório** |
-| `description` | String | Detalhes da tarefa |
-| `status` | Enum | TODO / DOING / DONE |
-| `priority` | Enum | LOW / MEDIUM / HIGH |
-| `dueDate` | Date | Data limite |
-| `projectId` | FK(Project) | Relacionamento |
+- Java 17
+- Spring Boot 3.5.6
+- Spring Security
+- Spring Data JPA
+- PostgreSQL
+- Flyway
+- JWT (JSON Web Token)
+- Lombok
+- MapStruct
+- SpringDoc OpenAPI (Swagger)
+- Docker
+- Docker Compose
+- H2 Database (testes)
 
----
+## 📦 Pré-requisitos
 
-### 🌐 2. Endpoints REST
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-| Método | Endpoint | Descrição |
-|---------|-----------|-----------|
-| **POST** | `/projects` | Criar novo projeto (`name` obrigatório) |
-| **GET** | `/projects` | Listar todos os projetos (paginação opcional) |
-| **POST** | `/tasks` | Criar nova tarefa vinculada a um projeto |
-| **GET** | `/tasks?status=&priority=&projectId=` | Buscar tarefas com filtros opcionais |
-| **PUT** | `/tasks/{id}/status` | Atualizar apenas o status da tarefa |
-| **DELETE** | `/tasks/{id}` | Remover tarefa |
+- [Java JDK 17](https://www.oracle.com/java/technologies/downloads/) ou superior
+- [Maven](https://maven.apache.org/download.cgi) (versão 3.6 ou superior)
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
----
+## 🔧 Como Executar
 
-## ✅ Requisitos Obrigatórios
-- 🧑‍💻 **Java 17+** e **Spring Boot 3+**  
-- 🧠 **Spring Data JPA**  
-- 🗄️ Banco Relacional (**PostgreSQL** ou **H2**)  
-- ✔️ **Bean Validation**  
-- 🧪 **Testes Automatizados**  
-  - Unitários (Services mockados)  
-  - Integração (Controllers com MockMvc ou Testcontainers)  
-- ⚠️ Tratamento de erros com `@ControllerAdvice`  
-- 📦 Uso de **DTOs** (`record` ou classes simples)  
-- 📘 **README** explicando como rodar o projeto
+### 1. Clone o repositório
+```bash
+git clone 
+cd 
+```
 
----
+### 2. Compile o projeto
+```bash
+mvn clean install
+```
 
-## 🏅 Diferenciais (Pontos Extras)
-- 🧭 Documentação **Swagger / OpenAPI**  
-- 🔐 Autenticação simples com **JWT** ou Basic Auth  
-- 🐳 Configuração de **Docker** / **docker-compose**  
-- ⚡ Uso de **MapStruct** para mapeamento de DTOs  
-- 🔍 Testes de API com **RestAssured**
+### 3. Inicie o banco de dados com Docker Compose
+```bash
+docker-compose up -d
+```
 
----
+### 4. Execute a aplicação
+```bash
+mvn spring-boot:run
+```
 
-## 🛠️ Tags
-`#Java` `#SpringBoot` `#Backend` `#DesafioTecnico`  
-`#API` `#RestAPI` `#Docker` `#Kubernetes`  
-`#PostgreSQL` `#Oracle` `#JPA` `#Swagger`  
-`#RestAssured` `#CleanCode` `#SoftwareEngineering`
+ou execute a aplicação pela sua IDE preferida.
 
----
+### 5. Acesse a aplicação
 
-### 💡 Dica
-> Foque em **organização, boas práticas e clareza do código**.  
-> Um bom README e commits bem descritos também serão avaliados. 😉
+- **API**: `http://localhost:8080`
+- **Documentação Swagger**: `http://localhost:8080/swagger-ui.html`
 
----
+## 📚 Documentação da API
 
-### 🧾 Licença
-Este projeto foi desenvolvido exclusivamente para o **processo seletivo SIS Innov & Tech** e não deve ser utilizado para fins comerciais.
+A documentação completa da API está disponível via Swagger UI após iniciar a aplicação:
+```
+http://localhost:8080/swagger-ui.html
+```
 
----
+### Endpoints Disponíveis
+
+#### Autenticação
+- `POST /auth/register` - Registrar novo usuário
+- `POST /auth/login` - Login de usuário
+
+#### Projetos
+- `GET /projects` - Listar todos os projetos
+- `POST /projects` - Criar novo projeto
+- `PUT /projects/{id}/finalizar` - Finalizar projeto
+
+#### Tarefas
+- `GET /tasks` - Buscar tarefas com filtros
+- `POST /tasks` - Criar nova tarefa
+- `PUT /tasks/{id}/status` - Atualizar status da tarefa
+- `DELETE /tasks/{id}` - Deletar tarefa
+
+## 📁 Estrutura do Projeto
+```
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   └── resources/
+│   └── test/
+├── docker-compose.yml
+├── pom.xml
+└── README.md
+```
+
+## 🧪 Testando a API
+
+Você pode testar a API usando:
+
+1. **Swagger UI**: Interface interativa disponível em `/swagger-ui.html`
+2. **Postman**: Importe a collection disponível na pasta `/postman` (se disponível)
+3. **cURL**: Exemplos disponíveis na documentação do Swagger
