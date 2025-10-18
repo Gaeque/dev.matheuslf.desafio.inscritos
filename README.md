@@ -97,4 +97,3 @@ Você pode testar a API usando:
 
 1. **Swagger UI**: Interface interativa disponível em `/swagger-ui.html`
 2. **Postman**: Importe a collection disponível na pasta `/postman` (se disponível)
-3. **cURL**: Exemplos disponíveis na documentação do Swagger
