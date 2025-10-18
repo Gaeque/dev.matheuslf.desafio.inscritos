@@ -42,7 +42,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 
 ### 1. Clone o repositório
 ```bash
-git clone 
+git clone https://github.com/Gaeque/dev.matheuslf.desafio.inscritos.git
 cd 
 ```
 
@@ -91,18 +91,6 @@ http://localhost:8080/swagger-ui.html
 - `POST /tasks` - Criar nova tarefa
 - `PUT /tasks/{id}/status` - Atualizar status da tarefa
 - `DELETE /tasks/{id}` - Deletar tarefa
-
-## 📁 Estrutura do Projeto
-```
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   └── resources/
-│   └── test/
-├── docker-compose.yml
-├── pom.xml
-└── README.md
-```
 
 ## 🧪 Testando a API
 
